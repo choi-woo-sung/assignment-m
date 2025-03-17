@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="string_all">전체</string>
+    <string name="string_won">%1$s원</string>
+    <string name="string_sale">%1$s%%</string>
+</resources>
