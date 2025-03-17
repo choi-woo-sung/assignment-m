@@ -1,6 +1,7 @@
 package com.woosung.compose.data.di
 
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
+import com.woosung.compose.data.network.AssignmentApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -24,7 +25,6 @@ class NetworkModule {
         .connectTimeout(30, TimeUnit.SECONDS)
         .readTimeout(30, TimeUnit.SECONDS)
         .writeTimeout(30, TimeUnit.SECONDS)
-//        .addInterceptor(TokenInterceptor())
         .build()
 
 
@@ -48,6 +48,6 @@ class NetworkModule {
     @Provides
     fun provideHeyApi(
         retrofit: Retrofit,
-    ): HeyApi = retrofit.create(HeyApi::class.java)
+    ): AssignmentApi = retrofit.create(AssignmentApi::class.java)
 
 }
