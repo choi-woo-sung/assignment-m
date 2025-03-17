@@ -10,17 +10,8 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
-import com.woosung.compose.test.ui.theme.ComposeTestTheme
-import com.woosung.compose.presentation.screen.main.MainScreen
-import com.woosung.compose.presentation.screen.search.brand.BrandScreen
-import com.woosung.compose.presentation.screen.search.model.ModelScreen
-import com.woosung.compose.presentation.screen.search.modelgroup.ModelGroupScreen
 import com.woosung.compose.presentation.theme.ComposeTestTheme
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.serialization.Serializable
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -30,7 +21,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             ComposeTestTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(modifier = Modifier.padding(innerPadding))
+//                    Greeting(modifier = Modifier.padding(innerPadding))
                 }
             }
         }
