@@ -1,0 +1,81 @@
+package com.woosung.compose.presentation.component
+
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import coil.compose.AsyncImage
+import com.woosung.compose.domain.model.Good
+import com.woosung.compose.presentation.R
+import com.woosung.compose.presentation.util.PriceUtil
+import com.woosung.compose.presentation.util.debugPlaceholder
+
+@Composable
+fun ProductItem(good: Good) {
+    Column(Modifier) {
+        Box {
+            AsyncImage(
+                model = good.thumbnailURL,
+                contentDescription = good.brandName,
+                placeholder = debugPlaceholder(R.drawable.test),
+            )
+            if (good.hasCoupon) {
+                Box(
+                    modifier = Modifier
+                        .align(Alignment.BottomStart)
+                        .background(
+                            color = Color.DarkGray
+                        )
+                ) {
+                    Text(
+                        modifier = Modifier.padding(horizontal = 10.dp, vertical = 4.dp),
+                        text = "쿠폰",
+                        color = Color.White,
+                    )
+                }
+            }
+        }
+        Text(
+            text = good.brandName,
+            modifier = Modifier.padding(top = 8.dp),
+        )
+        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
+            Text(
+                text = stringResource(R.string.string_won, PriceUtil.addCommas(good.price)),
+                modifier = Modifier.padding(top = 8.dp),
+            )
+            Text(
+                text = stringResource(R.string.string_sale, good.saleRate),
+                modifier = Modifier.padding(top = 8.dp),
+                color = Color.Red
+            )
+        }
+    }
+}
+
+
+@Preview(showBackground = true)
+@Composable
+private fun ProductItemPreview() {
+    ProductItem(
+        good = Good(
+            linkURL = "123",
+            thumbnailURL = "123",
+            brandName = "널디",
+            price = 20900,
+            saleRate = 50,
+            hasCoupon = true
+        )
+    )
+}
