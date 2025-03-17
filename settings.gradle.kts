@@ -19,7 +19,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "ComposeTest"
+rootProject.name = "Assignment-m"
 include(":app")
 include(":presentation")
 include(":data")
