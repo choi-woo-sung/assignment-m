@@ -4,6 +4,7 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.tooling.preview.Preview
 import com.woosung.compose.domain.model.Good
 import com.woosung.compose.presentation.component.ProductItem
 
@@ -18,3 +19,13 @@ fun GridContent(goodsList: List<Good>) {
     }
 }
 
+
+@Preview
+@Composable
+private fun GridContentPreview() {
+    GridContent(
+        goodsList = listOf(
+            Good()
+        )
+    )
+}
