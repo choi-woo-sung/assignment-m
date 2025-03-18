@@ -40,7 +40,7 @@ class NetworkModule {
                 coerceInputValues = true
             }.asConverterFactory("application/json".toMediaType()),
         )
-        .baseUrl("https://recruit.heydealer.com")
+        .baseUrl("https://meta.musinsa.com")
         .build()
 
 

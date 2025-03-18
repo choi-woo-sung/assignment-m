@@ -1,8 +1,10 @@
 package com.woosung.compose.data.handle
 
+import kotlinx.serialization.Serializable
 import retrofit2.HttpException
 import retrofit2.Response
 
+@Serializable
 data class ApiResponse<T>(
     val data: T,
 )
@@ -13,7 +15,7 @@ suspend fun <T> Response<ApiResponse<T>>.executeHandle(): T {
         val body = response.body()?.data
         if (response.isSuccessful) body!! else throw HttpException(response)
     } catch (e: HttpException) {
-        throw Exception()
+        throw e
     }
 }
 

@@ -15,4 +15,4 @@ val HeyBlue = Color(0xFF396EFF)
 
 val HeyGreen = Color(0xFF1AC595)
 
-val HeyGray = Color(0xFF869AB7)
+val MSGray = Color(0xFF869AB7)

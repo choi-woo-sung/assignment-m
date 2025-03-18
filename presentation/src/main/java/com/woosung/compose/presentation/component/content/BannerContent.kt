@@ -15,25 +15,35 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
+import coil.compose.rememberAsyncImagePainter
 import com.woosung.compose.domain.model.Banner
 import com.woosung.compose.presentation.R
+import com.woosung.compose.presentation.component.ParallaxImage
 import com.woosung.compose.presentation.util.debugPlaceholder
 import com.woosung.compose.test.ui.theme.MSGray
 
 
+
+
 @Composable
 fun BannerContent(bannerList: List<Banner>, textColor: Color = Color.White) {
+
     val pagerState = rememberPagerState(
         initialPage = 0,
         pageCount = { bannerList.size }
     )
     HorizontalPager(state = pagerState) { page ->
+        val image = rememberAsyncImagePainter(model = bannerList[page].thumbnailURL)
+
         Box() {
             AsyncImage(
                 model = bannerList[page].thumbnailURL,
                 placeholder = debugPlaceholder(R.drawable.test),
                 contentDescription = ""
             )
+//            ParallaxImage(
+//                image.state.painter
+//            )
             Text(
                 modifier = Modifier.align(Alignment.Center),
                 text = bannerList[page].title,
