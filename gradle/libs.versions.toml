@@ -27,6 +27,8 @@ paging3 = "3.3.6"
 androidXNavigation = "2.8.3"
 androidXComposeHiltNavigation = "1.2.0"
 
+mavericks = "3.0.9"
+
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -77,6 +79,8 @@ paging3-compose = { module = "androidx.paging:paging-compose",version.ref = "pag
 
 androidx-compose-navigation = { module = "androidx.navigation:navigation-compose", version.ref = "androidXNavigation" }
 androidx-compose-hilt-navigation = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "androidXComposeHiltNavigation" }
+
+mavericks =  {module = "com.airbnb.android:mavericks" , version.ref = "mavericks"}
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

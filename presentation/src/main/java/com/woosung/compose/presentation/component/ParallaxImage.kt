@@ -7,6 +7,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.drawscope.translate
 import androidx.compose.ui.graphics.graphicsLayer
@@ -26,9 +27,10 @@ fun ParallaxImage(imageBitmap: ImageBitmap, currentPageOffset: Float) {
     Canvas(
         modifier = Modifier
             .fillMaxSize()
+            .clipToBounds()
             .graphicsLayer {
                 translationX = lerp(10f, 0f, 1f - currentPageOffset)
-            } // Apply translation
+            }
     ) {
         translate(left = parallaxOffset) {
             drawImage(

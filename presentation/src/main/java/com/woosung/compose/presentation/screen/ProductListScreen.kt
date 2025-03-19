@@ -74,7 +74,9 @@ fun LazyGridScope.ProductContent(content: Content) {
         }
 
         is Content.StyleType -> {
-            StyleContent(content.data)
+            item(span = { GridItemSpan(3)} ){
+                StyleContent(styleList = content.data)
+            }
 
         }
 
