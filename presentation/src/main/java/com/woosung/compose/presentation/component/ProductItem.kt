@@ -1,18 +1,13 @@
 package com.woosung.compose.presentation.component
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.IntrinsicSize
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -22,23 +17,28 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.woosung.compose.domain.model.Good
 import com.woosung.compose.presentation.R
+import com.woosung.compose.presentation.component.ProductItemDefaults.AspectRatio
+import com.woosung.compose.presentation.component.ProductItemDefaults.CouponPaddingValue
+import com.woosung.compose.presentation.component.ProductItemDefaults.PaddigValue
 import com.woosung.compose.presentation.util.PriceUtil
 import com.woosung.compose.presentation.util.debugPlaceholder
 
 @Composable
 fun ProductItem(good: Good) {
-    Column() {
+    Column(modifier = Modifier.padding(horizontal = PaddigValue)) {
         Box() {
             AsyncImage(
-                modifier = Modifier.width(100.dp),
+                modifier = Modifier.aspectRatio(AspectRatio),
                 model = good.thumbnailURL,
                 contentDescription = good.brandName,
                 placeholder = debugPlaceholder(R.drawable.test),
+                contentScale = ContentScale.Crop
             )
             if (good.hasCoupon) {
                 Box(
@@ -49,7 +49,7 @@ fun ProductItem(good: Good) {
                         )
                 ) {
                     Text(
-                        modifier = Modifier.padding(horizontal = 5.dp, vertical = 4.dp),
+                        modifier = Modifier.padding(CouponPaddingValue),
                         style = MaterialTheme.typography.labelSmall,
                         text = "쿠폰",
                         color = Color.White,
@@ -59,16 +59,22 @@ fun ProductItem(good: Good) {
         }
         Text(
             text = good.brandName,
+            maxLines = 1,
+            overflow = TextOverflow.Ellipsis,
+            style = MaterialTheme.typography.bodySmall,
             modifier = Modifier
                 .padding(top = 8.dp)
         )
-        Row(modifier = Modifier, horizontalArrangement = Arrangement.SpaceBetween) {
+        Row(modifier = Modifier) {
             Text(
                 text = stringResource(R.string.string_won, PriceUtil.addCommas(good.price)),
                 fontWeight = FontWeight.Bold,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
                 modifier = Modifier
-                    .padding(top = 8.dp)
+                    .padding(top = 8.dp),
             )
+            Spacer(modifier = Modifier.weight(1f))
             Text(
                 text = stringResource(R.string.string_sale, good.saleRate),
                 modifier = Modifier.padding(top = 8.dp),
@@ -77,6 +83,16 @@ fun ProductItem(good: Good) {
         }
     }
 }
+
+private object ProductItemDefaults {
+    const val SpanCount = 3
+    const val MaxPhotoCount = 9
+    val PaddigValue = 4.dp
+    val AspectRatio = 1f
+    val CouponPaddingValue = PaddingValues(horizontal = 5.dp, vertical = 4.dp)
+    const val FirstItemSpanCount = 2
+}
+
 
 @Preview(showBackground = true)
 @Composable

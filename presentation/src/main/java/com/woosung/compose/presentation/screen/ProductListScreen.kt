@@ -1,5 +1,7 @@
 package com.woosung.compose.presentation.screen
 
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyGridScope
@@ -32,17 +34,17 @@ internal fun ProductListScreen(viewModel: ProductListViewModel = hiltViewModel()
 
 @Composable
 private fun ProductListScreen(productListUiState: ProductListUiState) {
-    LazyVerticalGrid(columns = GridCells.Fixed(3)) {
+    LazyColumn  {
         productListUiState.productList.forEach {
             ProductListItem(it)
         }
     }
 }
 
-fun LazyGridScope.ProductListItem(product: Product) {
+fun LazyListScope.ProductListItem(product: Product) {
     // Product Header
     product.header?.let { header ->
-        item(span = { GridItemSpan(3) }) {
+        item {
             MsHeader(header)
         }
     }
@@ -51,7 +53,7 @@ fun LazyGridScope.ProductListItem(product: Product) {
     ProductContent(product.contents)
     // Product Footer
     product.footer?.let { footer ->
-        item(span = { GridItemSpan(3) }) {
+        item {
             MsFooterButton(footer)
         }
     }
@@ -59,10 +61,10 @@ fun LazyGridScope.ProductListItem(product: Product) {
 }
 
 
-fun LazyGridScope.ProductContent(content: Content) {
+fun LazyListScope.ProductContent(content: Content) {
     when (content) {
         is Content.BannerType -> {
-            item(span = { GridItemSpan(3) }) {
+            item {
                 BannerContent(content.data)
             }
         }
@@ -74,14 +76,14 @@ fun LazyGridScope.ProductContent(content: Content) {
         }
 
         is Content.StyleType -> {
-            item(span = { GridItemSpan(3)} ){
+            item(){
                 StyleContent(styleList = content.data)
             }
 
         }
 
         is Content.ScrollType -> {
-            item(span = { GridItemSpan(3) }) {
+            item {
                 ScrollContent(content.data)
             }
         }

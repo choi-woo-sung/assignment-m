@@ -94,6 +94,8 @@ private class GalleryGridMeasurePolicy(
 
         val placeablesWithOffset = measurables
             .mapIndexed { index, measurable ->
+                val
+
                 when (index) {
                     // 1 row, 1 item
                     0 -> {

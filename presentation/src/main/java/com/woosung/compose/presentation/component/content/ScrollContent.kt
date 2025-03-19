@@ -1,19 +1,22 @@
 package com.woosung.compose.presentation.component.content
 
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.woosung.compose.domain.model.Good
 import com.woosung.compose.presentation.component.ProductItem
 
 @Composable
 fun ScrollContent(listItem: List<Good>) {
-    LazyRow {
+    LazyRow (){
         items(items = listItem){
-            ProductItem(it)
+            ProductItem(good = it)
         }
     }
 }
