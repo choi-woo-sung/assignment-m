@@ -46,7 +46,7 @@ class NetworkModule {
 
     @Singleton
     @Provides
-    fun provideHeyApi(
+    fun provideAssignmentApi(
         retrofit: Retrofit,
     ): AssignmentApi = retrofit.create(AssignmentApi::class.java)
 
