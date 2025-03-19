@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.android.hilt)
+    alias(libs.plugins.junit5)
     kotlin("plugin.serialization") version "2.1.0"
     id("kotlin-kapt")
 }
@@ -61,4 +62,9 @@ dependencies {
 
     implementation(libs.paging3)
     implementation(libs.paging3.compose)
+
+    testImplementation(libs.junit)
+    testImplementation(libs.junit.jupiter.api)
+    testRuntimeOnly(libs.junit.jupiter.engine)
+    testRuntimeOnly(libs.junit.vintage.engine)
 }
