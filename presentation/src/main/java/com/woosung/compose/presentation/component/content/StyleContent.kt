@@ -19,7 +19,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Constraints
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.LayoutDirection
-import coil.compose.AsyncImage
+import coil3.compose.AsyncImage
 import com.woosung.compose.domain.model.Style
 import com.woosung.compose.presentation.R
 import com.woosung.compose.presentation.util.debugPlaceholder
@@ -30,7 +30,7 @@ fun StyleContent(
     styleList: List<Style>
 ) {
     MusinsaGrid(
-        contentPadding = PaddingValues()
+        contentPadding = PaddingValues(),
     ) {
         styleList.forEach { style ->
             Box(

@@ -3,4 +3,8 @@
     <string name="string_all">전체</string>
     <string name="string_won">%1$s원</string>
     <string name="string_sale">%1$s%%</string>
+
+    <string name="string_error">연결 실패</string>
+    <string name="string_error_description">서버와의 연결이 불안정합니다\n잠시 후 다시 시도해주세요</string>
+    <string name="string_refresh">새로고침</string>
 </resources>

@@ -1,5 +1,7 @@
 package com.woosung.compose.presentation.screen
 
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyGridScope
@@ -7,33 +9,47 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import coil.compose.AsyncImage
 import com.woosung.compose.domain.model.Content
 import com.woosung.compose.domain.model.Product
-import com.woosung.compose.presentation.R
 import com.woosung.compose.presentation.component.MsFooterButton
 import com.woosung.compose.presentation.component.MsHeader
 import com.woosung.compose.presentation.component.ProductItem
 import com.woosung.compose.presentation.component.content.BannerContent
 import com.woosung.compose.presentation.component.content.ScrollContent
 import com.woosung.compose.presentation.component.content.StyleContent
-import com.woosung.compose.presentation.util.debugPlaceholder
+import com.woosung.compose.presentation.screen.ProductListViewModel.ProductListUiState
+import com.woosung.compose.presentation.screen.common.ErrorScreen
+import com.woosung.compose.presentation.screen.common.LoadingScreen
 
 @Composable
 internal fun ProductListScreen(viewModel: ProductListViewModel = hiltViewModel()) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
-    ProductListScreen(uiState)
+
+    when (val state = uiState) {
+        is ProductListUiState.Loading -> {
+            LoadingScreen()
+        }
+
+        is ProductListUiState.Success -> {
+            ProductListScreen(state.productList)
+        }
+
+        is ProductListUiState.Error -> {
+            ErrorScreen() {}
+        }
+    }
 }
 
 
 @Composable
-private fun ProductListScreen(productListUiState: ProductListUiState) {
-    LazyVerticalGrid(columns = GridCells.Fixed(3)) {
-        productListUiState.productList.forEach {
+private fun ProductListScreen(productList: List<Product>) {
+    LazyVerticalGrid(columns = GridCells.Fixed(3),
+        ) {
+        productList.forEach {
             ProductListItem(it)
         }
     }
@@ -74,7 +90,7 @@ fun LazyGridScope.ProductContent(content: Content) {
         }
 
         is Content.StyleType -> {
-            item(span = { GridItemSpan(3)} ){
+            item(span = { GridItemSpan(3) }) {
                 StyleContent(styleList = content.data)
             }
 

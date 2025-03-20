@@ -4,10 +4,13 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
 import android.util.Log
-import coil.ImageLoader
-import coil.request.ErrorResult
-import coil.request.ImageRequest
-import coil.request.SuccessResult
+import coil3.BitmapImage
+import coil3.ImageLoader
+import coil3.request.ErrorResult
+import coil3.request.ImageRequest
+import coil3.request.SuccessResult
+import coil3.request.allowHardware
+import coil3.toBitmap
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -28,7 +31,7 @@ object ImageUtil {
 
             when (val result = loader.execute(request)) {
                 is SuccessResult -> {
-                    (result.drawable as? BitmapDrawable)?.bitmap?.let {
+                    result.image.toBitmap().let {
                         onBitmapLoaded(it)
                     }
                 }

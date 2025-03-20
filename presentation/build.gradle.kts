@@ -70,6 +70,7 @@ dependencies {
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.paging3.compose)
     implementation(libs.coil.compose)
+    implementation(libs.coil.okhttp)
 
 
 }
