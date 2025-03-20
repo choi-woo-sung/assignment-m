@@ -4,6 +4,7 @@ import android.text.style.TtsSpan.TextBuilder
 import android.util.Log
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.BoxWithConstraints
@@ -42,6 +43,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.lerp
 import com.woosung.compose.domain.model.Banner
 import com.woosung.compose.presentation.component.ParallaxImage
+import com.woosung.compose.presentation.model.BannerUi
 import com.woosung.compose.presentation.util.ImageUtil
 import com.woosung.compose.test.ui.theme.MSGray
 import kotlinx.coroutines.delay
@@ -50,8 +52,9 @@ import kotlin.math.absoluteValue
 
 @Composable
 fun BannerContent(
-    bannerList: List<Banner>,
-    textColor: Color = Color.White
+    bannerList: List<BannerUi>,
+    textColor: Color = Color.White,
+    onClicked : (String) -> Unit = {}
 ) {
 
     val context = LocalContext.current
@@ -99,7 +102,7 @@ fun BannerContent(
             val currentPageOffset = calculatePageOffset(pagerState, currentPage)
 
 
-            BoxWithConstraints {
+            BoxWithConstraints (modifier = Modifier.clickable{onClicked(bannerList[currentPage].linkURL)}) {
                 imageBitmap?.let {
                     ParallaxImage(it, currentPageOffset)
                 }
@@ -123,7 +126,7 @@ fun BannerContent(
 
 @Composable
 private fun BoxWithConstraintsScope.BannerOverlay(
-    banner: Banner,
+    banner: BannerUi,
     textColor: Color,
     currentPageOffset: Float,
 ) {
@@ -182,14 +185,14 @@ private fun BannerContentPreview() {
 
 val bannerListPreview =
     listOf(
-        Banner(
+        BannerUi(
             linkURL = "",
             thumbnailURL = "",
             title = "테스트 1",
             description = "테스트 디스크립션",
             keyword = "할인판매"
         ),
-        Banner(
+        BannerUi(
             linkURL = "",
             thumbnailURL = "",
             title = "테스트 1",

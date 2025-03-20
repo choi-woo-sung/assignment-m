@@ -56,6 +56,8 @@ dependencies {
     testImplementation(libs.okhttp.mockwebserver)
 
     kapt(libs.android.hilt.compiler)
+    implementation(libs.mavericks.hilt)
+
 
     testImplementation(libs.androidx.core.testing)
     testImplementation(libs.coroutine.test)

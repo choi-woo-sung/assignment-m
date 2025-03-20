@@ -13,14 +13,14 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
-import com.woosung.compose.domain.model.Header
 import com.woosung.compose.presentation.R
+import com.woosung.compose.presentation.model.HeaderUi
 import com.woosung.compose.presentation.util.debugPlaceholder
 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MsHeader(header: Header) {
+fun MsHeader(header: HeaderUi) {
     TopAppBar(
         title = {
             Row(verticalAlignment = androidx.compose.ui.Alignment.CenterVertically) {
@@ -52,7 +52,7 @@ fun MsHeader(header: Header) {
 @Composable
 private fun MsHeaderPreview() {
     MsHeader(
-        Header(
+        HeaderUi(
             title = "Title",
             iconURL = "https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png",
             linkURL = "https://www.google.com"

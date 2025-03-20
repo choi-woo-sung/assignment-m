@@ -17,11 +17,12 @@ import coil3.compose.AsyncImage
 import com.woosung.compose.domain.model.Footer
 import com.woosung.compose.domain.model.FooterType
 import com.woosung.compose.presentation.R
+import com.woosung.compose.presentation.model.FooterUi
 import com.woosung.compose.presentation.util.debugPlaceholder
 
 @Composable
 fun MsFooterButton(
-    footer: Footer,
+    footer: FooterUi,
     onClicked: (FooterType) -> Unit = {}
 ) {
     Button(
@@ -52,7 +53,7 @@ fun MsFooterButton(
 @Composable
 private fun MsButtonPreview() {
     MsFooterButton(
-        footer = Footer(
+        footer = FooterUi(
             title = "더보기",
             iconURL = "https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png",
             type = FooterType.REFRESH

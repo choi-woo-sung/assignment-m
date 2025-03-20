@@ -15,32 +15,32 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.woosung.compose.domain.model.Good
 import com.woosung.compose.presentation.component.ProductItem
+import com.woosung.compose.presentation.model.GoodUi
 
 
 @Composable
-fun LazyGridScope.GridContent(goodsList: List<Good>) {
+fun LazyGridScope.GridContent(goodUi: List<GoodUi>) {
 //    LazyVerticalGrid(
 //        columns = GridCells.Fixed(3),
 //        contentPadding = PaddingValues(horizontal = 10.dp, vertical = 20.dp),
 //    ) {
-//        items(items = goodsList, key = { it.hashCode() }) {
-//            ProductItem(good = it)
+//        items(items = goodUi, key = { it.hashCode() }) {
+//            ProductItem(goodUi = it)
 //        }
 //    }
-    items(goodsList) {
+    items(goodUi) {
         ProductItem(good = it)
     }
 }
 
 @Composable
-fun GridContent(goodsList: List<Good>) {
+fun GridContent(goodUi: List<GoodUi>) {
     LazyVerticalGrid(
         columns = GridCells.Fixed(3),
         contentPadding = PaddingValues(horizontal = 10.dp, vertical = 20.dp),
     ) {
-        items(items = goodsList, key = { it.hashCode() }) {
+        items(items = goodUi, key = { it.hashCode() }) {
             ProductItem(good = it)
         }
     }
@@ -85,8 +85,8 @@ fun <T> LazyListScope.gridItems(
 @Composable
 private fun GridContentPreview() {
     GridContent(
-        goodsList = listOf(
-            Good(
+        goodUi = listOf(
+            GoodUi(
                 thumbnailURL = "https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png",
                 brandName = "BrandName",
                 price = 10000,
@@ -94,7 +94,7 @@ private fun GridContentPreview() {
                 hasCoupon = true,
                 linkURL = ""
             ),
-            Good(
+            GoodUi(
                 thumbnailURL = "https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png",
                 brandName = "BrandName",
                 price = 10000,
@@ -102,7 +102,7 @@ private fun GridContentPreview() {
                 hasCoupon = true,
                 linkURL = ""
             ),
-            Good(
+            GoodUi(
                 thumbnailURL = "https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png",
                 brandName = "BrandName",
                 price = 10000,
@@ -110,7 +110,7 @@ private fun GridContentPreview() {
                 hasCoupon = true,
                 linkURL = ""
             ),
-            Good(
+            GoodUi(
                 thumbnailURL = "https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png",
                 brandName = "BrandName",
                 price = 10000,
@@ -118,7 +118,7 @@ private fun GridContentPreview() {
                 hasCoupon = true,
                 linkURL = ""
             ),
-            Good(
+            GoodUi(
                 thumbnailURL = "https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png",
                 brandName = "BrandName",
                 price = 10000,
@@ -126,7 +126,7 @@ private fun GridContentPreview() {
                 hasCoupon = true,
                 linkURL = ""
             ),
-            Good(
+            GoodUi(
                 thumbnailURL = "https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png",
                 brandName = "BrandName",
                 price = 10000,

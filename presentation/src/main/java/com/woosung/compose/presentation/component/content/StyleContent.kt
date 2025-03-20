@@ -1,14 +1,12 @@
 package com.woosung.compose.presentation.component.content
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.Layout
 import androidx.compose.ui.layout.Measurable
@@ -20,21 +18,23 @@ import androidx.compose.ui.unit.Constraints
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.LayoutDirection
 import coil3.compose.AsyncImage
-import com.woosung.compose.domain.model.Style
 import com.woosung.compose.presentation.R
+import com.woosung.compose.presentation.model.StyleUi
 import com.woosung.compose.presentation.util.debugPlaceholder
 import kotlin.math.roundToInt
 
 @Composable
 fun StyleContent(
-    styleList: List<Style>
+    styleList: List<StyleUi>,
+    onClicked: (String) -> Unit = {}
 ) {
     MusinsaGrid(
         contentPadding = PaddingValues(),
     ) {
         styleList.forEach { style ->
-            Box(
-            ) {
+            Box(Modifier.clickable {
+                onClicked(style.linkURL)
+            }) {
                 AsyncImage(
                     modifier = Modifier.fillMaxSize(),
                     model = style.thumbnailURL,
@@ -183,51 +183,51 @@ private fun StyleContentPreview1() {
     Surface {
         StyleContent(
             listOf(
-                Style(
+                StyleUi(
                     thumbnailURL = "https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png",
                     linkURL = ""
                 ),
-                Style(
+                StyleUi(
                     thumbnailURL = "https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png",
                     linkURL = ""
                 ),
-                Style(
+                StyleUi(
                     thumbnailURL = "https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png",
                     linkURL = ""
                 ),
-                Style(
+                StyleUi(
                     thumbnailURL = "https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png",
                     linkURL = ""
                 ),
-                Style(
+                StyleUi(
                     thumbnailURL = "https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png",
                     linkURL = ""
                 ),
-                Style(
+                StyleUi(
                     thumbnailURL = "https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png",
                     linkURL = ""
                 ),
-                Style(
+                StyleUi(
                     thumbnailURL = "https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png",
                     linkURL = ""
                 ),
-                Style(
+                StyleUi(
                     thumbnailURL = "https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png",
                     linkURL = ""
                 ),
-                Style(
+                StyleUi(
                     thumbnailURL = "https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png",
                     linkURL = ""
                 ),
-                Style(
+                StyleUi(
                     thumbnailURL = "https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png",
                     linkURL = ""
                 ),
-                Style(
+                StyleUi(
                     thumbnailURL = "https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png",
                     linkURL = ""
                 ),
-                Style(
+                StyleUi(
                     thumbnailURL = "https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png",
                     linkURL = ""
                 ),

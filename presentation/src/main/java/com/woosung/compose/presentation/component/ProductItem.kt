@@ -21,11 +21,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.woosung.compose.domain.model.Good
 import com.woosung.compose.presentation.R
+import com.woosung.compose.presentation.model.GoodUi
 import com.woosung.compose.presentation.util.PriceUtil
 
 @Composable
-fun ProductItem(good: Good) {
-    Column() {
+fun ProductItem(modifier : Modifier = Modifier, good: GoodUi) {
+    Column(modifier) {
         Box() {
             NetworkImage(
                 url = good.thumbnailURL,
@@ -79,7 +80,7 @@ fun ProductItem(good: Good) {
 @Composable
 private fun ProductItemPreview() {
     ProductItem(
-        good = Good(
+        good = GoodUi(
             linkURL = "123",
             thumbnailURL = "123",
             brandName = "널디",
