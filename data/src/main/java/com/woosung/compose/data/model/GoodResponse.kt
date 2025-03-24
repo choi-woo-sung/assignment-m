@@ -1,6 +1,6 @@
 package com.woosung.compose.data.model
 
-import com.woosung.compose.domain.model.Good
+import com.woosung.compose.domain.model.Goods
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -14,8 +14,8 @@ data class GoodResponse(
 )
 
 
-fun GoodResponse.toModel(): Good {
-    return Good(
+fun GoodResponse.toModel(): Goods {
+    return Goods(
         linkURL = linkURL,
         thumbnailURL = thumbnailURL,
         brandName = brandName,

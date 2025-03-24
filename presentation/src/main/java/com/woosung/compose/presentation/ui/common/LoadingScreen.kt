@@ -12,6 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.woosung.compose.presentation.theme.MsPadding
 
 @Composable
 fun LoadingScreen(
@@ -24,7 +25,7 @@ fun LoadingScreen(
             modifier = Modifier
                 .align(Alignment.Center)
                 .size(64.dp)
-                .padding(8.dp),
+                .padding(MsPadding.medium),
             strokeWidth = 4.dp,
             color = Color.Black
         )

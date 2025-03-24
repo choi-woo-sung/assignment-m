@@ -12,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImagePainter
 import coil3.compose.rememberAsyncImagePainter
@@ -54,9 +55,10 @@ fun NetworkImage(
 
             is AsyncImagePainter.State.Success -> {
                 Image(
-                    modifier = Modifier.then(sizeResolver).aspectRatio(1f),
+                    modifier = Modifier.then(sizeResolver).fillMaxWidth(),
                     painter = painter,
                     contentDescription = contentDescription,
+                    contentScale = ContentScale.FillBounds
                 )
             }
 

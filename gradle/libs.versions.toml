@@ -27,12 +27,12 @@ paging3 = "3.3.6"
 androidXNavigation = "2.8.3"
 androidXComposeHiltNavigation = "1.2.0"
 
-mavericks = "3.0.9"
-
 junit5 = "5.8.2"
 pluginjunit5 = "1.8.2.1"
 
 immutable = "0.3.5"
+
+turbine = "1.2.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -90,10 +90,8 @@ junit-jupiter-api = { module = "org.junit.jupiter:junit-jupiter-api", version.re
 junit-jupiter-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version.ref = "junit5" }
 junit-vintage-engine = { module = "org.junit.vintage:junit-vintage-engine", version.ref = "junit5" }
 
-mavericks =  {module = "com.airbnb.android:mavericks" , version.ref = "mavericks"}
-mavericks-compose =  {module = "com.airbnb.android:mavericks-compose" , version.ref = "mavericks"}
-mavericks-hilt =  {module = "com.airbnb.android:mavericks-hilt" , version.ref = "mavericks"}
 
+test-turbine = {module = "app.cash.turbine:turbine", version.ref = "turbine"}
 
 # immutable
 kotlin-immutable = { group = "org.jetbrains.kotlinx", name = "kotlinx-collections-immutable", version.ref = "immutable" }

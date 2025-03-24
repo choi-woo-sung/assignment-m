@@ -14,7 +14,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
-import com.woosung.compose.domain.model.Footer
 import com.woosung.compose.domain.model.FooterType
 import com.woosung.compose.presentation.R
 import com.woosung.compose.presentation.model.FooterUi
@@ -22,14 +21,16 @@ import com.woosung.compose.presentation.util.debugPlaceholder
 
 @Composable
 fun MsFooterButton(
+    modifier : Modifier = Modifier,
     footer: FooterUi,
     onClicked: (FooterType) -> Unit = {}
 ) {
     Button(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .border(1.dp, Color.Black, RoundedCornerShape(100))
-            .clipToBounds(),
+            .clipToBounds()
+        ,
         shape = RoundedCornerShape(100),
         onClick = { onClicked(footer.type) },
         colors = ButtonDefaults.buttonColors().copy(

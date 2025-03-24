@@ -1,7 +1,7 @@
 package com.woosung.compose.data.di
 
-import com.woosung.compose.data.repository.impl.ProductRepositoryImp
-import com.woosung.compose.domain.repository.api.ProductRepository
+import com.woosung.compose.data.repository.impl.GoodsRepositoryImp
+import com.woosung.compose.domain.repository.api.GoodsRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -14,7 +14,7 @@ internal interface RepositoryModule {
 
      @Binds
      @Singleton
-     fun bindProductRepository(
-         productRepositoryImp: ProductRepositoryImp
-     ): ProductRepository
+     fun bindGoodsRepository(
+         goodsRepositoryImp: GoodsRepositoryImp
+     ): GoodsRepository
 }

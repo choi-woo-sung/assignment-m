@@ -14,7 +14,7 @@ data class FooterResponse(
 
 fun FooterResponse.toModel(): Footer {
     return Footer(
-        type = FooterType.valueOf(this.type),
+        type = runCatching { FooterType.valueOf(this.type) }.getOrElse { FooterType.UNKNOWN },
         title = title,
         iconURL = iconURL,
     )

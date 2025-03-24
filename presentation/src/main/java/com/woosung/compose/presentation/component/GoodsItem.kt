@@ -19,13 +19,12 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.woosung.compose.domain.model.Good
 import com.woosung.compose.presentation.R
-import com.woosung.compose.presentation.model.GoodUi
+import com.woosung.compose.presentation.model.GoodsUi
 import com.woosung.compose.presentation.util.PriceUtil
 
 @Composable
-fun ProductItem(modifier : Modifier = Modifier, good: GoodUi) {
+fun GoodsItem(modifier: Modifier = Modifier, good: GoodsUi) {
     Column(modifier) {
         Box() {
             NetworkImage(
@@ -54,13 +53,15 @@ fun ProductItem(modifier : Modifier = Modifier, good: GoodUi) {
 
         Text(
             text = good.brandName,
-            modifier = Modifier,
+            modifier = Modifier.fillMaxWidth(),
             style = MaterialTheme.typography.labelSmall,
             color = MaterialTheme.colorScheme.onSurface
         )
-        Row(modifier = Modifier.fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically
-            ) {
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween,
+        ) {
             Text(
                 text = stringResource(R.string.string_won, PriceUtil.addCommas(good.price)),
                 style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.Bold),
@@ -79,8 +80,8 @@ fun ProductItem(modifier : Modifier = Modifier, good: GoodUi) {
 @Preview(showBackground = true)
 @Composable
 private fun ProductItemPreview() {
-    ProductItem(
-        good = GoodUi(
+    GoodsItem(
+        good = GoodsUi(
             linkURL = "123",
             thumbnailURL = "123",
             brandName = "널디",

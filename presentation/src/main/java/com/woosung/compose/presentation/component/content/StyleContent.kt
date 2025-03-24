@@ -17,10 +17,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Constraints
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.LayoutDirection
-import coil3.compose.AsyncImage
+import androidx.compose.ui.unit.dp
 import com.woosung.compose.presentation.R
+import com.woosung.compose.presentation.component.NetworkImage
 import com.woosung.compose.presentation.model.StyleUi
-import com.woosung.compose.presentation.util.debugPlaceholder
+import com.woosung.compose.presentation.theme.MsPadding
 import kotlin.math.roundToInt
 
 @Composable
@@ -28,20 +29,18 @@ fun StyleContent(
     styleList: List<StyleUi>,
     onClicked: (String) -> Unit = {}
 ) {
-    MusinsaGrid(
-        contentPadding = PaddingValues(),
+    StyleGrid(
+        contentPadding = PaddingValues(horizontal = 4.dp),
     ) {
         styleList.forEach { style ->
             Box(Modifier.clickable {
                 onClicked(style.linkURL)
             }) {
-                AsyncImage(
+                NetworkImage(
                     modifier = Modifier.fillMaxSize(),
-                    model = style.thumbnailURL,
+                    url = style.thumbnailURL,
                     contentDescription = "",
-                    placeholder = debugPlaceholder(
-                        R.drawable.test
-                    ),
+                    debugPlaceholder =  R.drawable.test
                 )
             }
 
@@ -50,7 +49,7 @@ fun StyleContent(
 }
 
 @Composable
-fun MusinsaGrid(
+fun StyleGrid(
     modifier: Modifier = Modifier,
     contentPadding: PaddingValues,
     content: @Composable () -> Unit
@@ -67,102 +66,91 @@ fun MusinsaGrid(
 private fun rememberMeasurePolicy(
     contentPadding: PaddingValues
 ): MeasurePolicy = remember(contentPadding) {
-    GalleryGridMeasurePolicy(contentPadding)
+    StyleGridMeasurePolicy(contentPadding)
 }
 
-private class GalleryGridMeasurePolicy(
-    private val contentPadding: PaddingValues
+private class StyleGridMeasurePolicy(
+    private val contentPadding: PaddingValues,
 ) : MeasurePolicy {
 
     override fun MeasureScope.measure(
         measurables: List<Measurable>,
         constraints: Constraints
     ): MeasureResult {
-        val start =
-            contentPadding.calculateLeftPadding(LayoutDirection.Ltr).roundToPx()
+        val start = contentPadding.calculateLeftPadding(LayoutDirection.Ltr).roundToPx()
         val top = contentPadding.calculateTopPadding().roundToPx()
         val end = contentPadding.calculateRightPadding(LayoutDirection.Ltr).roundToPx()
         val bottom = contentPadding.calculateBottomPadding().roundToPx()
 
+        val horizontalSpacing = MsPadding.small.roundToPx()
+        val verticalSpacing = MsPadding.small.roundToPx()
+
         val width = constraints.maxWidth
-        val itemWidth = (width - start - end) / GalleryGridDefaults.SpanCount
-        val firstItemWidth = itemWidth * GalleryGridDefaults.FirstItemSpanCount
+        val totalHorizontalSpacing =
+            horizontalSpacing * (StyleGridDefaults.SpanCount - 1)
+        val itemWidth = ((width - start - end - totalHorizontalSpacing) / StyleGridDefaults.SpanCount)
+        val firstItemWidth = itemWidth * StyleGridDefaults.FirstItemSpanCount +
+                horizontalSpacing * (StyleGridDefaults.FirstItemSpanCount - 1)
 
         var height = top
         var rowHeight = 0
-        val itemHeight = (itemWidth / GalleryGridDefaults.AspectRatio).roundToInt()
+        val itemHeight = (itemWidth / StyleGridDefaults.AspectRatio).roundToInt()
 
-        val placeablesWithOffset = measurables
-            .mapIndexed { index, measurable ->
-                when (index) {
-                    // 1 row, 1 item
-                    0 -> {
-                        val firstItemHeight = itemHeight * GalleryGridDefaults.FirstItemSpanCount
-                        rowHeight = firstItemHeight
-                        height += rowHeight
-                        measurable.measure(
-                            Constraints(
-                                minWidth = firstItemWidth,
-                                maxWidth = firstItemWidth,
-                                minHeight = firstItemHeight,
-                                maxHeight = firstItemHeight
-                            )
-                        ) to IntOffset(
-                            x = start,
-                            y = top
-                        )
-                    }
-                    // 1 row, 2 item
-                    1 -> {
-                        measurable.measure(
-                            Constraints(
-                                minWidth = itemWidth,
-                                maxWidth = itemWidth,
-                                minHeight = itemHeight,
-                                maxHeight = itemHeight,
-                            )
-                        ) to IntOffset(
-                            x = start + firstItemWidth,
-                            y = top
-                        )
-                    }
-                    // 1 row, 3 item
-                    2 -> {
-                        measurable.measure(
-                            Constraints(
-                                minWidth = itemWidth,
-                                maxWidth = itemWidth,
-                                minHeight = itemHeight,
-                                maxHeight = itemHeight
-                            )
-                        ) to IntOffset(
-                            x = start + firstItemWidth,
-                            y = top + itemHeight
-                        )
-                    }
-                    // others
-                    else -> {
-                        val column = index % GalleryGridDefaults.SpanCount
-                        if (column == 0) {
-                            rowHeight = itemHeight
-                            height += rowHeight
-                        }
-                        measurable.measure(
-                            Constraints(
-                                minWidth = itemWidth,
-                                maxWidth = itemWidth,
-                                minHeight = itemHeight,
-                                maxHeight = itemHeight
-                            )
-                        ) to IntOffset(
-                            x = start + column * itemWidth,
-                            y = height - rowHeight
-                        )
-                    }
+        val placeablesWithOffset = measurables.mapIndexed { index, measurable ->
+            when (index) {
+                0 -> {
+                    val firstItemHeight = itemHeight * StyleGridDefaults.FirstItemSpanCount +
+                            verticalSpacing * (StyleGridDefaults.FirstItemSpanCount - 1)
+                    rowHeight = firstItemHeight
+                    height += rowHeight + verticalSpacing
+                    measurable.measure(
+                        Constraints.fixed(firstItemWidth, firstItemHeight)
+                    ) to IntOffset(
+                        x = start,
+                        y = top
+                    )
+                }
+
+                1 -> {
+                    measurable.measure(
+                        Constraints.fixed(itemWidth, itemHeight)
+                    ) to IntOffset(
+                        x = start + firstItemWidth + horizontalSpacing,
+                        y = top
+                    )
+                }
+
+                2 -> {
+                    measurable.measure(
+                        Constraints.fixed(itemWidth, itemHeight)
+                    ) to IntOffset(
+                        x = start + firstItemWidth + horizontalSpacing,
+                        y = top + itemHeight + verticalSpacing
+                    )
+                }
+
+                else -> {
+                    val gridIndex = index - 3
+                    val column = gridIndex % StyleGridDefaults.SpanCount
+                    val row = gridIndex / StyleGridDefaults.SpanCount
+
+                    val x = start + column * (itemWidth + horizontalSpacing)
+                    val y = height + row * (itemHeight + verticalSpacing)
+
+                    measurable.measure(
+                        Constraints.fixed(itemWidth, itemHeight)
+                    ) to IntOffset(x, y)
                 }
             }
+        }
 
-        return layout(width, height + bottom) {
+        // 마지막 줄까지 높이 반영
+        val totalGridRows = ((measurables.size - 3).coerceAtLeast(0) + StyleGridDefaults.SpanCount - 1) /
+                StyleGridDefaults.SpanCount
+        val additionalHeight =
+            totalGridRows * itemHeight + (totalGridRows - 1).coerceAtLeast(0) * verticalSpacing
+
+        return layout(width, height + additionalHeight + bottom) {
             placeablesWithOffset.forEach { (placeable, offset) ->
                 placeable.place(offset)
             }
@@ -170,16 +158,15 @@ private class GalleryGridMeasurePolicy(
     }
 }
 
-private object GalleryGridDefaults {
+private object StyleGridDefaults {
     const val SpanCount = 3
-    const val MaxPhotoCount = 9
     val AspectRatio = 1f
     const val FirstItemSpanCount = 2
 }
 
 @Preview
 @Composable
-private fun StyleContentPreview1() {
+private fun StyleContentPreview() {
     Surface {
         StyleContent(
             listOf(

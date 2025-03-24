@@ -1,9 +1,7 @@
 package com.woosung.compose.data.di
 
-import com.woosung.compose.data.remote.api.ProductRemoteSource
-import com.woosung.compose.data.remote.impl.ProductRemoteSourceImp
-import com.woosung.compose.data.repository.impl.ProductRepositoryImp
-import com.woosung.compose.domain.repository.api.ProductRepository
+import com.woosung.compose.data.remote.api.GoodsRemoteSource
+import com.woosung.compose.data.remote.impl.GoodsRemoteSourceImp
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -15,7 +13,7 @@ import javax.inject.Singleton
 internal interface DataSourceModule {
     @Binds
     @Singleton
-    fun bindProductRemoteSource(
-        productRemoteSourceImp: ProductRemoteSourceImp
-    ): ProductRemoteSource
+    fun bindGoodsRemoteSource(
+        goodsRemoteSourceImp: GoodsRemoteSourceImp
+    ): GoodsRemoteSource
 }

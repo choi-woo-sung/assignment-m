@@ -1,6 +1,6 @@
 package com.woosung.compose.data.network
 
-import com.woosung.compose.data.model.ProductResponse
+import com.woosung.compose.data.model.GoodsContainerResponse
 import com.woosung.compose.data.handle.ApiResponse
 import retrofit2.Response
 import retrofit2.http.GET
@@ -13,5 +13,5 @@ interface AssignmentApi {
      * @return
      */
     @GET("/interview/list.json")
-    suspend fun getProductList(): Response<ApiResponse<List<ProductResponse>>>
+    suspend fun getGoodsList(): Response<ApiResponse<List<GoodsContainerResponse>>>
 }

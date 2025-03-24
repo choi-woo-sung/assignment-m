@@ -1,7 +1,8 @@
 package com.woosung.compose.network.api
 
 import com.woosung.compose.data.ApiAbstract
-import com.woosung.compose.data.handle.executeHandle
+import com.woosung.compose.data.handle.NetworkResult
+import com.woosung.compose.data.handle.handleApi
 import com.woosung.compose.data.model.HeaderResponse
 import com.woosung.compose.data.network.AssignmentApi
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -34,14 +35,22 @@ class MusinsaApiTest : ApiAbstract<AssignmentApi>() {
         fun verifyGetGoods() = runTest {
             val response = service.getProductList()
             Assertions.assertTrue(response.code() == 200)
-            val parsingData = response.executeHandle()
+            val parsingData = handleApi { response }
 
-            Assertions.assertEquals(
-                parsingData[1].header,
-                HeaderResponse(
-                    title = "클리어런스",
-                ),
-            )
+            when (parsingData) {
+                is NetworkResult.Success -> {
+                    Assertions.assertEquals(
+                        parsingData.data[0].header,
+                        HeaderResponse(
+                            title = "클리어런스",
+                        ),
+                    )
+                }
+
+                else -> {
+                    Assertions.fail("예상하지 못한 결과")
+                }
+            }
         }
     }
 }

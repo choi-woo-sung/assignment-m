@@ -3,24 +3,23 @@ package com.woosung.compose.presentation.component.content
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.foundation.pager.HorizontalPager
-import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.woosung.compose.domain.model.Good
-import com.woosung.compose.presentation.component.ProductItem
-import com.woosung.compose.presentation.model.GoodUi
+import com.woosung.compose.presentation.component.GoodsItem
+import com.woosung.compose.presentation.model.GoodsUi
+import com.woosung.compose.presentation.theme.MsPadding
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
 
 @Composable
-fun ScrollContent(listItem: ImmutableList<GoodUi>, onClicked: (String) -> Unit = {}) {
+fun ScrollContent(listItem: ImmutableList<GoodsUi>, onClicked: (String) -> Unit = {}) {
     val state = rememberLazyListState()
     LaunchedEffect(listItem) {
         state.scrollToItem(0)
@@ -28,13 +27,12 @@ fun ScrollContent(listItem: ImmutableList<GoodUi>, onClicked: (String) -> Unit =
 
     LazyRow(
         state = state,
-        contentPadding = PaddingValues(horizontal = 12.dp),
-        horizontalArrangement = Arrangement.spacedBy(4.dp),
+        horizontalArrangement = Arrangement.spacedBy(MsPadding.small),
     ) {
         items(
             items = listItem,
             key = { it.linkURL }) {
-            ProductItem(modifier = Modifier
+            GoodsItem(modifier = Modifier.width(120.dp)
                 .animateItem()
                 .clickable { onClicked(it.linkURL) }, it)
         }
@@ -47,7 +45,7 @@ fun ScrollContent(listItem: ImmutableList<GoodUi>, onClicked: (String) -> Unit =
 private fun ScrollContentPreview() {
     ScrollContent(
         listItem = persistentListOf(
-            GoodUi(
+            GoodsUi(
                 thumbnailURL = "https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png",
                 brandName = "BrandName",
                 price = 10000,
@@ -55,7 +53,7 @@ private fun ScrollContentPreview() {
                 hasCoupon = true,
                 linkURL = ""
             ),
-            GoodUi(
+            GoodsUi(
                 thumbnailURL = "https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png",
                 brandName = "BrandName",
                 price = 10000,
@@ -63,7 +61,7 @@ private fun ScrollContentPreview() {
                 hasCoupon = true,
                 linkURL = ""
             ),
-            GoodUi(
+            GoodsUi(
                 thumbnailURL = "https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png",
                 brandName = "BrandName",
                 price = 10000,
@@ -71,7 +69,7 @@ private fun ScrollContentPreview() {
                 hasCoupon = true,
                 linkURL = ""
             ),
-            GoodUi(
+            GoodsUi(
                 thumbnailURL = "https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png",
                 brandName = "BrandName",
                 price = 10000,
@@ -79,7 +77,7 @@ private fun ScrollContentPreview() {
                 hasCoupon = true,
                 linkURL = ""
             ),
-            GoodUi(
+            GoodsUi(
                 thumbnailURL = "https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png",
                 brandName = "BrandName",
                 price = 10000,
@@ -87,7 +85,7 @@ private fun ScrollContentPreview() {
                 hasCoupon = true,
                 linkURL = ""
             ),
-            GoodUi(
+            GoodsUi(
                 thumbnailURL = "https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png",
                 brandName = "BrandName",
                 price = 10000,
