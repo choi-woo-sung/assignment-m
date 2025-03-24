@@ -9,7 +9,7 @@ import com.woosung.compose.data.model.HeaderResponse
 import com.woosung.compose.data.model.StyleResponse
 import com.woosung.compose.data.remote.api.GoodsRemoteSource
 
-class SuccessBannerGoodsRemoteSource : GoodsRemoteSource {
+internal class SuccessBannerGoodsRemoteSource : GoodsRemoteSource {
 
     override suspend fun getGoodsList(): NetworkResult<List<GoodsContainerResponse>> {
         return NetworkResult.Success<List<GoodsContainerResponse>>(

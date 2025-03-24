@@ -5,7 +5,7 @@ import com.woosung.compose.data.handle.ApiResponse
 import retrofit2.Response
 import retrofit2.http.GET
 
-interface AssignmentApi {
+internal interface AssignmentApi {
 
     /**
      * 상품 리스트를 가져옵니다.

@@ -4,7 +4,7 @@ import com.woosung.compose.domain.model.Goods
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class GoodResponse(
+internal data class GoodResponse(
     val linkURL: String,
     val thumbnailURL: String,
     val brandName: String,
@@ -14,7 +14,7 @@ data class GoodResponse(
 )
 
 
-fun GoodResponse.toModel(): Goods {
+internal fun GoodResponse.toModel(): Goods {
     return Goods(
         linkURL = linkURL,
         thumbnailURL = thumbnailURL,

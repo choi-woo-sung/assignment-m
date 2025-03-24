@@ -54,7 +54,7 @@ import kotlin.math.absoluteValue
 
 
 @Composable
-fun BannerContent(
+internal fun BannerContent(
     bannerList: List<BannerUi>,
     textColor: Color = Color.White,
     onClicked: (String) -> Unit = {}

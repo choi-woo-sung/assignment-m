@@ -15,7 +15,7 @@ import androidx.compose.ui.unit.dp
 import com.woosung.compose.presentation.theme.MsPadding
 
 @Composable
-fun LoadingScreen(
+internal fun LoadingScreen(
     modifier: Modifier = Modifier
 ) {
     Box(

@@ -24,7 +24,7 @@ import com.woosung.compose.presentation.model.GoodsUi
 import com.woosung.compose.presentation.util.PriceUtil
 
 @Composable
-fun GoodsItem(modifier: Modifier = Modifier, good: GoodsUi) {
+internal fun GoodsItem(modifier: Modifier = Modifier, good: GoodsUi) {
     Column(modifier) {
         Box() {
             NetworkImage(

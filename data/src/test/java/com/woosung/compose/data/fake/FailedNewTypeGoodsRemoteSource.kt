@@ -8,7 +8,7 @@ import com.woosung.compose.data.model.HeaderResponse
 import com.woosung.compose.data.model.StyleResponse
 import com.woosung.compose.data.remote.api.GoodsRemoteSource
 
-class FailedNewTypeGoodsRemoteSource : GoodsRemoteSource {
+internal class FailedNewTypeGoodsRemoteSource : GoodsRemoteSource {
 
     override suspend fun getGoodsList(): NetworkResult<List<GoodsContainerResponse>> {
         return NetworkResult.Success<List<GoodsContainerResponse>>(

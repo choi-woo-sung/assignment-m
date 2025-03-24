@@ -5,12 +5,12 @@ import kotlinx.serialization.Serializable
 
 
 @Serializable
-data class StyleResponse(
+internal data class StyleResponse(
     val linkURL: String,
     val thumbnailURL: String,
 )
 
-fun StyleResponse.toModel(): Style {
+internal fun StyleResponse.toModel(): Style {
     return Style(
         linkURL = linkURL,
         thumbnailURL = thumbnailURL,

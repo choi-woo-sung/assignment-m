@@ -14,14 +14,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.unit.dp
 import androidx.core.net.toUri
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.woosung.compose.domain.model.FooterType
 import com.woosung.compose.presentation.component.GoodsItem
 import com.woosung.compose.presentation.component.Header
-import com.woosung.compose.presentation.component.MsFooterButton
+import com.woosung.compose.presentation.component.FooterButton
 import com.woosung.compose.presentation.component.content.BannerContent
 import com.woosung.compose.presentation.component.content.ScrollContent
 import com.woosung.compose.presentation.component.content.StyleContent
@@ -126,7 +125,7 @@ internal fun LazyGridScope.GoodsListItem(
     // Product Footer
     contentUi.footer?.let { footer ->
         item(span = { GridItemSpan(3) }) {
-            MsFooterButton(
+            FooterButton(
                 modifier = Modifier.padding(horizontal = MsPadding.medium),
                 footer,
                 onClicked = footerClicked

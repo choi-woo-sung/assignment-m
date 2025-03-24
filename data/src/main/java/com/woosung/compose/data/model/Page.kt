@@ -1,6 +1,6 @@
 package com.woosung.compose.data.model
 
-data class Page(
+internal data class Page(
     val initialSize:Int,
     val chunkSize:Int,
     val endOfContent:Boolean

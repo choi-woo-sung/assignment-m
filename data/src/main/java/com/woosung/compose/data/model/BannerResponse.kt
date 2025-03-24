@@ -4,7 +4,7 @@ import com.woosung.compose.domain.model.Banner
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class BannerResponse(
+internal data class BannerResponse(
     val linkURL: String,
     val thumbnailURL: String,
     val title: String,
@@ -12,7 +12,7 @@ data class BannerResponse(
     val keyword: String,
 )
 
-fun BannerResponse.toModel(): Banner {
+internal fun BannerResponse.toModel(): Banner {
     return Banner(
         linkURL = linkURL,
         thumbnailURL = thumbnailURL,

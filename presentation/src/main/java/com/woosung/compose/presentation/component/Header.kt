@@ -23,7 +23,7 @@ import com.woosung.compose.presentation.util.debugPlaceholder
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun Header(header: HeaderUi, actionClicked: (String) -> Unit = {}) {
+internal fun Header(header: HeaderUi, actionClicked: (String) -> Unit = {}) {
     TopAppBar(
         title = {
             Row(verticalAlignment = androidx.compose.ui.Alignment.CenterVertically) {

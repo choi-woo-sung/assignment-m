@@ -86,13 +86,13 @@ data class StyleUi(
     val thumbnailURL: String,
 )
 
-fun Header.toUiModel() = HeaderUi(
+internal fun Header.toUiModel() = HeaderUi(
     title = title,
     iconURL = iconURL,
     linkURL = linkURL,
 )
 
-fun Goods.toUiModel() = GoodsUi(
+internal fun Goods.toUiModel() = GoodsUi(
     linkURL = linkURL,
     thumbnailURL = thumbnailURL,
     brandName = brandName,
@@ -102,19 +102,19 @@ fun Goods.toUiModel() = GoodsUi(
 
     )
 
-fun Style.toUiModel() = StyleUi(
+internal fun Style.toUiModel() = StyleUi(
     linkURL = linkURL,
     thumbnailURL = thumbnailURL,
 )
 
-fun Footer.toUiModel() = FooterUi(
+internal fun Footer.toUiModel() = FooterUi(
     type = type,
     title = title,
     iconURL = iconURL,
 
     )
 
-fun Banner.toUiModel() = BannerUi(
+internal fun Banner.toUiModel() = BannerUi(
     linkURL = linkURL,
     thumbnailURL = thumbnailURL,
     title = title,
@@ -124,7 +124,7 @@ fun Banner.toUiModel() = BannerUi(
     )
 
 
-fun GoodsContainer.toUiModel(): ContentUI = when (val content = this.contents) {
+internal fun GoodsContainer.toUiModel(): ContentUI = when (val content = this.contents) {
     is Content.BannerType -> BannerContent(
         content.data.map { it.toUiModel() }.toImmutableList(),
         header = this.header?.toUiModel(),

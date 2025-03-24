@@ -122,7 +122,7 @@ data class GoodsListUiState(
 )
 
 
-sealed class GoodsListEvent {
+internal sealed class GoodsListEvent {
     data object Loading : GoodsListEvent()
     data class Loaded(val contentList: List<ContentUI>) : GoodsListEvent()
     data class Shuffle(val contentList: List<ContentUI>) : GoodsListEvent()

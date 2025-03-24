@@ -19,7 +19,7 @@ import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
 
 @Composable
-fun ScrollContent(listItem: ImmutableList<GoodsUi>, onClicked: (String) -> Unit = {}) {
+internal fun ScrollContent(listItem: ImmutableList<GoodsUi>, onClicked: (String) -> Unit = {}) {
     val state = rememberLazyListState()
     LaunchedEffect(listItem) {
         state.scrollToItem(0)

@@ -19,7 +19,7 @@ import androidx.compose.ui.unit.dp
 import com.woosung.compose.presentation.R
 
 @Composable
-fun ErrorScreen(
+internal fun ErrorScreen(
     modifier: Modifier = Modifier,
     onUiAction: () -> Unit,
 ) {

@@ -13,7 +13,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.combine
 import javax.inject.Inject
 
-class GoodsRepositoryImp @Inject constructor(
+internal class GoodsRepositoryImp @Inject constructor(
     private val goodsRemoteSource: GoodsRemoteSource
 ) : GoodsRepository {
 

@@ -20,7 +20,7 @@ import com.woosung.compose.presentation.model.FooterUi
 import com.woosung.compose.presentation.util.debugPlaceholder
 
 @Composable
-fun MsFooterButton(
+internal fun FooterButton(
     modifier : Modifier = Modifier,
     footer: FooterUi,
     onClicked: (FooterType) -> Unit = {}
@@ -52,8 +52,8 @@ fun MsFooterButton(
 
 @Preview(showBackground = true)
 @Composable
-private fun MsButtonPreview() {
-    MsFooterButton(
+private fun FooterButtonPreview() {
+    FooterButton(
         footer = FooterUi(
             title = "더보기",
             iconURL = "https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png",

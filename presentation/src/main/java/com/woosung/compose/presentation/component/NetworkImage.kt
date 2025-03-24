@@ -22,7 +22,7 @@ import com.woosung.compose.presentation.util.debugPlaceholder
 
 
 @Composable
-fun NetworkImage(
+internal fun NetworkImage(
     modifier: Modifier = Modifier,
     url: String,
     contentDescription: String,

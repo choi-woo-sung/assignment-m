@@ -7,7 +7,7 @@ import com.woosung.compose.data.network.AssignmentApi
 import com.woosung.compose.data.remote.api.GoodsRemoteSource
 import javax.inject.Inject
 
-class GoodsRemoteSourceImp @Inject constructor(
+internal class GoodsRemoteSourceImp @Inject constructor(
     private val assignmentApi: AssignmentApi
 ) : GoodsRemoteSource {
     override suspend fun getGoodsList(): NetworkResult<List<GoodsContainerResponse>> =

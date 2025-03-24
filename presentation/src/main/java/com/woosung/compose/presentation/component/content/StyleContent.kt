@@ -25,7 +25,7 @@ import com.woosung.compose.presentation.theme.MsPadding
 import kotlin.math.roundToInt
 
 @Composable
-fun StyleContent(
+internal fun StyleContent(
     styleList: List<StyleUi>,
     onClicked: (String) -> Unit = {}
 ) {

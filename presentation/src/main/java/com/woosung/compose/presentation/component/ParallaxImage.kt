@@ -18,7 +18,7 @@ import androidx.compose.ui.unit.toIntSize
 
 @SuppressLint("RestrictedApi")
 @Composable
-fun ParallaxImage(imageBitmap: ImageBitmap, currentPageOffset: Float) {
+internal fun ParallaxImage(imageBitmap: ImageBitmap, currentPageOffset: Float) {
     val drawSize = IntSize(imageBitmap.width, imageBitmap.height)
     val screenWidth = LocalConfiguration.current.screenWidthDp
     // Calculate parallax offset
