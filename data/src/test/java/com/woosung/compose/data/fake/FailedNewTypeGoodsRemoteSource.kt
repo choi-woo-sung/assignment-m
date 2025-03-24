@@ -10,7 +10,7 @@ import com.woosung.compose.data.remote.api.GoodsRemoteSource
 
 class FailedNewTypeGoodsRemoteSource : GoodsRemoteSource {
 
-    override suspend fun getProducts(): NetworkResult<List<GoodsContainerResponse>> {
+    override suspend fun getGoodsList(): NetworkResult<List<GoodsContainerResponse>> {
         return NetworkResult.Success<List<GoodsContainerResponse>>(
             listOf(
                 GoodsContainerResponse(
@@ -68,4 +68,5 @@ class FailedNewTypeGoodsRemoteSource : GoodsRemoteSource {
             )
         )
     }
+
 }
