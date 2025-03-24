@@ -54,19 +54,16 @@ class GoodsListViewModel @Inject constructor(
         goodsRepository.goodsListFlow.onEach {
             events.send(GoodsListEvent.Loaded(it.map { it.toUiModel() }))
         }.launchIn(viewModelScope)
-
         fetchGoods()
     }
 
 
-    fun fetchGoods() {
-        viewModelScope.launch {
-            events.send(GoodsListEvent.Loading)
-            runCatching {
-                goodsRepository.getGoods()
-            }.onFailure {
-                events.send(GoodsListEvent.Error)
-            }
+    fun fetchGoods() = viewModelScope.launch {
+        events.send(GoodsListEvent.Loading)
+        runCatching {
+            goodsRepository.getGoods()
+        }.onFailure {
+            events.send(GoodsListEvent.Error)
         }
     }
 
