@@ -33,7 +33,7 @@ class MusinsaApiTest : ApiAbstract<AssignmentApi>() {
         @Test
         @DisplayName("데이터 파싱과 응답코드가 정상적으로 반환")
         fun verifyGetGoods() = runTest {
-            val response = service.getProductList()
+            val response = service.getGoodsList()
             Assertions.assertTrue(response.code() == 200)
             val parsingData = handleApi { response }
 
